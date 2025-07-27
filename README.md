@@ -1,4 +1,4 @@
-
+<img width="684" height="426" alt="image" src="https://github.com/user-attachments/assets/10235641-331c-41b6-9c8f-bc126e660ccd" />
 # Performance and Telemetry Analysis of Trae IDE: A Deep Dive into ByteDance's VSCode Fork
 
 ## Executive Summary
@@ -231,6 +231,7 @@ The telemetry system captures:
 
 When I attempted to discuss these findings on Trae's Discord server, i got spanked with gag-hammer
 ![mutedlmao](https://i.imgur.com/wvAOzuG.png)
+![notgood](https://i.imgur.com/phpvlVS.png)
 https://discord.com/channels/1320998163615846420/1335032920850825391/1398374824987852891
 
 1. **Keyword Filtering**: The word "track" was added to an automated blacklist
