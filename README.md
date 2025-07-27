@@ -236,10 +236,10 @@ When I attempted to discuss these findings on Trae's Discord server, i got spank
 ![notgood](https://i.imgur.com/phpvlVS.png)
 https://discord.com/channels/1320998163615846420/1335032920850825391/1398374824987852891
 
+The moderation blacklist was added after the discussion taken place, the mute was manual at first.
 1. **Keyword Filtering**: The word "track" was added to an automated blacklist
 2. **Automatic Punishment**: Mentioning tracking issues triggered an instant 7-day mute
 3. **Suppression of Technical Discussion**: Legitimate security concerns were treated as disruptive behavior
-
 
 
 ## 6. Privacy and Security Implications
@@ -257,25 +257,7 @@ https://discord.com/channels/1320998163615846420/1335032920850825391/13983748249
 - **Undocumented Behavior**: No clear disclosure of data collection practices
 - **Community Suppression**: Technical criticism met with censorship rather than engagement
 
-## 7. Recommendations
 
-### For Users
-1. **Immediate Action**: Consider alternative IDEs if privacy is a concern
-2. **Network Monitoring**: Use firewall rules to block ByteDance domains if continuing use
-3. **Regular Review**: Monitor process usage and network activity
-4. **Data Awareness**: Understand that usage data may be collected regardless of settings
-
-### For ByteDance/Trae Team
-1. **Honor User Preferences**: Implement genuine telemetry opt-out functionality
-2. **Transparency**: Provide clear documentation of data collection practices
-3. **Performance Optimization**: Address excessive resource consumption
-4. **Community Engagement**: Replace censorship with constructive dialogue
-
-## 8. Conclusion
-
-This analysis reveals significant concerns with Trae IDE's approach to user privacy and system resources. The combination of excessive resource usage, persistent telemetry despite user settings, and defensive community management creates a troubling pattern that users should carefully consider.
-
-While Trae offers some interesting features as a VSCode fork, the current implementation raises questions about ByteDance's commitment to user privacy and transparent development practices. Users requiring strict data privacy or optimal system performance may want to consider established alternatives like standard VSCode or other privacy-focused development environments.
 
 **Key Takeaways:**
 - Resource usage is 6x higher than VSCode baseline
@@ -286,6 +268,8 @@ While Trae offers some interesting features as a VSCode fork, the current implem
 ---
 
 *This analysis was conducted in July 2025 using Trae IDE version  PRE-2.0.2 and 2.0.2. Network traffic was captured using standard monitoring tools, and all findings are reproducible. Community members are encouraged to conduct their own testing and share results through appropriate channels.*
+
+While core of this research was written by hand, an LLM has rewritten it to fix broken english, grammar and enhance the verbal aspect of research.
 
 Discord: cryptux
 x (twitter): https://x.com/CookingCodes
