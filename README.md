@@ -223,7 +223,7 @@ The telemetry system captures:
 - **Unique Identifiers**: Machine ID, user ID, device fingerprints
 - **Workspace Details**: Project information, file paths (obfuscated)
 
-<iframe allow="fullscreen" allowfullscreen height="500" src="https://streamable.com/e/agr0a2?loop=0" width="500" style="border:none;"></iframe>
+[![Watch the video](https://streamable.com/e/agr0a2?loop=0)
 ## 5. Community Management Concerns
 
 ### Automated Censorship
