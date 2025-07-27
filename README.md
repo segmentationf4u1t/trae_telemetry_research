@@ -223,13 +223,15 @@ The telemetry system captures:
 - **Unique Identifiers**: Machine ID, user ID, device fingerprints
 - **Workspace Details**: Project information, file paths (obfuscated)
 
-<iframe allow="fullscreen" allowfullscreen height="1080" src="https://streamable.com/e/agr0a2?loop=0" width="1920" style="border:none;"></iframe>
+<iframe allow="fullscreen" allowfullscreen height="500" src="https://streamable.com/e/agr0a2?loop=0" width="500" style="border:none;"></iframe>
 ## 5. Community Management Concerns
 
 ### Automated Censorship
 
 When I attempted to discuss these findings on Trae's Discord server, i got spanked with gag-hammer
-<div style="position:relative; width:100%; height:0px; padding-bottom:56.250%"><iframe allow="fullscreen" allowfullscreen height="100%" src="https://streamable.com/e/agr0a2?loop=0" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;"></iframe></div>
+![mutedlmao](https://i.imgur.com/wvAOzuG.png)
+https://discord.com/channels/1320998163615846420/1335032920850825391/1398374824987852891
+
 1. **Keyword Filtering**: The word "track" was added to an automated blacklist
 2. **Automatic Punishment**: Mentioning tracking issues triggered an instant 7-day mute
 3. **Suppression of Technical Discussion**: Legitimate security concerns were treated as disruptive behavior
