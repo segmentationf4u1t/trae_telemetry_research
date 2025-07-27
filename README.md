@@ -284,3 +284,6 @@ While Trae offers some interesting features as a VSCode fork, the current implem
 ---
 
 *This analysis was conducted in July 2025 using Trae IDE version  PRE-2.0.2 and 2.0.2. Network traffic was captured using standard monitoring tools, and all findings are reproducible. Community members are encouraged to conduct their own testing and share results through appropriate channels.*
+
+Discord: cryptux
+x (twitter): https://x.com/CookingCodes
