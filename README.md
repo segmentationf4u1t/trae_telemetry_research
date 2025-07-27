@@ -1,4 +1,6 @@
 <img width="684" height="426" alt="image" src="https://github.com/user-attachments/assets/10235641-331c-41b6-9c8f-bc126e660ccd" />
+
+
 # Performance and Telemetry Analysis of Trae IDE: A Deep Dive into ByteDance's VSCode Fork
 
 ## Executive Summary
