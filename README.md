@@ -42,7 +42,7 @@ Initial testing revealed dramatic differences in resource consumption:
 |----------|---------------|--------------|----------------|------------|--------------|
 | VS Code  | 9             | ~0.9 GB      | Baseline          | 1.102.2  | 107 Files Rust + TS    |
 | Cursor   | 11            | ~1.9 GB      | 2.1x memory       | 1.2.4  | 107 Files Rust + TS  |
-| **Trae** | **11**        | **~1.9 GB**  | *2.1x memory**    | **0.2.2** | 107 Files Rust + TS |
+| **Trae** | **11**        | **~1.9 GB*  | *2.1x memory**    | **2.0.2** | 107 Files Rust + TS |
 
 *node_modules and target excluded
 
