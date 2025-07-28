@@ -1,5 +1,6 @@
 <img width="684" height="426" alt="image" src="https://github.com/user-attachments/assets/10235641-331c-41b6-9c8f-bc126e660ccd" />
 
+[Read this in Chinese (简体中文)](./README_zh.md)
 
 # Performance and Telemetry Analysis of Trae IDE: A Deep Dive into ByteDance's VSCode Fork
 
@@ -305,7 +306,7 @@ This item cannot be posted because it contains content blocked by this server. T
 
 
 **Key Takeaways:**
-- Resource usage is 6x higher than VSCode baseline (On par with Cursor in version 2.0.2)
+- Resource usage is 6x (2.1x v 2.0.2) higher than VSCode baseline (On par with Cursor in version 2.0.2)
 - Telemetry settings appear to be cosmetic rather than functional
 - Community feedback mechanisms are compromised by censorship
 - Data collection practices lack transparency and user control
