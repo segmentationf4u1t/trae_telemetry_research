@@ -31,29 +31,34 @@ Initial testing revealed dramatic differences in resource consumption:
 | **Trae** | **33**        | **~5.7 GB**  | **6.3x memory**   |
 
 ![Process Usage Comparison](https://i.imgur.com/jqYEBM7.png)
+
 *Figure 1: Trae spawns 3.7x more processes than VSCode and consumes 6.3x more memory*
 
 ### Community Feedback and Partial Resolution
 
-After reporting this issue on Trae's Discord server ([reference](https://discord.com/channels/1320998163615846420/1335032920850825391/1397999824389017742)), the development team acknowledged the problem. Version 2.0.2 addressed some concerns, reducing the process count by approximately 20 processes. However, Trae still maintains significantly higher resource usage than comparable IDEs.
+After reporting this issue on Trae's Discord server ([reference](https://discord.com/channels/1320998163615846420/1335032920850825391/1397999824389017742)), the development team acknowledged the problem. Version 2.0.2 addressed some concerns, reducing the process count by approximately 20 processes. However, Trae still maintains significantly higher resource usage than comparable IDEs - whether it is due poor optimalization or memory leaks i dunno, further research would be advised.
 
 **Post-Update Metrics (v2.0.2):**
 - Reduced from 33 to ~13 processes
 - Memory usage down to  ~2.5 GB
 
+
+
 ## 3. Network Traffic and Telemetry Investigation
 
-### Initial Discovery
-
-Network monitoring revealed persistent outbound connections to ByteDance infrastructure:
+Now this is where the fun begins, network monitoring revealed persistent outbound connections to ByteDance infrastructure:
 
 ![Network Requests](https://i.imgur.com/crkKdXF.png)
+
 *Figure 2: Trae's network activity showing regular connections to ByteDance servers*
 
+ 
 **Primary Endpoints Identified:**
 - `http://mon-va.byteoversea.com`
 - `http://maliva-mcs.byteoversea.com`
 - `https://mon-va.byteoversea.com/monitor_browser/collect/batch/?biz_id=marscode_nativeide_us`
+
+
 
 ### Telemetry Configuration Testing
 
@@ -62,17 +67,21 @@ Network monitoring revealed persistent outbound connections to ByteDance infrast
 I attempted to disable telemetry through the standard settings interface:
 
 ![Telemetry Settings](https://i.imgur.com/BYjJU0w.png)
+
 *Figure 3: Telemetry disabled in user settings*
 
 
 #### Unexpected Results
 
-**Critical Finding:** Disabling telemetry did not reduce network activity. Instead, it:
+Disabling telemetry did not reduce network activity. Instead, it:
 - Maintained existing connections to `mon-va.byteoversea.com` and `maliva-mcs.byteoversea.com`
 - **Increased** request frequency to the batch collection endpoint
 
+With telemetry disabled, these calls can still quickly accumulate—during testing, a single batch reached up to 53,606 bytes. While actively using the editor, I observed around 500 calls within ~7 minutes, totaling up to 26 MB of data transferred in that short timeframe.
+
 ![Increase of calls](https://i.imgur.com/BwdiwC4.png)
 *Figure 4: Increase of calls*
+
 
 ## 4. Data Transmission Analysis
 
@@ -154,6 +163,7 @@ Even with telemetry disabled, Trae continues transmitting detailed usage data:
 	]
 }
 ```
+While this is likely also related to authentication it has a great load of hardware specification, why?
 
 ### User Activity Tracking
 
