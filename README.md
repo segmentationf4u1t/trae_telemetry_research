@@ -1,6 +1,6 @@
 <img width="684" height="426" alt="image" src="https://github.com/user-attachments/assets/10235641-331c-41b6-9c8f-bc126e660ccd" />
 
-[🇨🇳 点击阅读中文版本 | Read in Chinese](README_zh.md)
+
 # Performance and Telemetry Analysis of Trae IDE: A Deep Dive into ByteDance's VSCode Fork
 
 ## Executive Summary
@@ -24,24 +24,35 @@ During evaluation of development environments for a personal project, I conducte
 
 Initial testing revealed dramatic differences in resource consumption:
 
-| IDE      | Process Count | Memory Usage | Performance Impact |
-|----------|---------------|--------------|-------------------|
-| VS Code  | 9             | ~0.9 GB      | Baseline          |
-| Cursor   | 11            | ~1.9 GB      | 2.1x memory       |
-| **Trae** | **33**        | **~5.7 GB**  | **6.3x memory**   |
+| IDE      | Process Count | Memory Usage | Performance Impact | Project Size |
+|----------|---------------|--------------|-------------------| -----|
+| VS Code  | 9             | ~0.9 GB      | Baseline          | 107 Files Rust + TS|
+| Cursor   | 11            | ~1.9 GB      | 2.1x memory       | 107 Files Rust + TS|
+| **Trae** | **33**        | **~5.7 GB**  | **6.3x memory**   | 107 Files Rust + TS|
 
-![Process Usage Comparison](https://i.imgur.com/jqYEBM7.png)
-
-*Figure 1: Trae spawns 3.7x more processes than VSCode and consumes 6.3x more memory*
-
-### Community Feedback and Partial Resolution
-
-After reporting this issue on Trae's Discord server ([reference](https://discord.com/channels/1320998163615846420/1335032920850825391/1397999824389017742)), the development team acknowledged the problem. Version 2.0.2 addressed some concerns, reducing the process count by approximately 20 processes. However, Trae still maintains significantly higher resource usage than comparable IDEs - whether it is due poor optimalization or memory leaks i dunno, further research would be advised.
 
 **Post-Update Metrics (v2.0.2):**
 - Reduced from 33 to ~13 processes
 - Memory usage down to  ~2.5 GB
 
+
+
+| IDE      | Process Count | Memory Usage | Performance Impact | Version | Project Size |
+|----------|---------------|--------------|----------------|------------|--------------|
+| VS Code  | 9             | ~0.9 GB      | Baseline          | 1.102.2  | 107 Files Rust + TS    |
+| Cursor   | 11            | ~1.9 GB      | 2.1x memory       | 1.2.4  | 107 Files Rust + TS  |
+| **Trae** | **11**        | **~1.9 GB**  | *2.1x memory**    | **0.2.2** | 107 Files Rust + TS |
+
+*node_modules and target excluded
+
+![Process Usage Comparison](https://i.imgur.com/jqYEBM7.png)
+
+*Figure 1: Trae spawns 3.7x more processes than VSCode and consumes 6.3x more memory*
+
+
+### Community Feedback and Partial Resolution
+
+After reporting this issue on Trae's Discord server ([reference](https://discord.com/channels/1320998163615846420/1335032920850825391/1397999824389017742)), the development team acknowledged the problem. Version 2.0.2 addressed some concerns, reducing the process count by approximately 20 processes. However.
 
 
 ## 3. Network Traffic and Telemetry Investigation
@@ -244,13 +255,37 @@ The telemetry system captures:
 When I attempted to discuss these findings on Trae's Discord server, i got spanked with gag-hammer
 ![mutedlmao](https://i.imgur.com/wvAOzuG.png)
 ![notgood](https://i.imgur.com/phpvlVS.png)
+
 https://discord.com/channels/1320998163615846420/1335032920850825391/1398374824987852891
 
-The moderation blacklist was added after the discussion taken place, the mute was manual at first.
+
+
+
+
+<s>
+
 1. **Keyword Filtering**: The word "track" was added to an automated blacklist
+</s>
+
 2. **Automatic Punishment**: Mentioning tracking issues triggered an instant 7-day mute
 3. **Suppression of Technical Discussion**: Legitimate security concerns were treated as disruptive behavior
 
+
+## Update 28/07/25
+
+Three days after the mute happened Community  moderator "Rdap" confirmed that the mute was automatic and it appears to be lifted. [You_can_see_it_here](https://github.com/segmentationf4u1t/trae_telemetry_research/issues/3)
+
+However, the messages that triggered the automatic warning are still visible in the Discord chat to users with the appropriate permissions. I'm not sure why the warning wasn't immediately lifted, especially since the staff saw exactly what happened at the time.
+
+The screenshot of mute says:
+
+"Nie można opublikować tego elementu, ponieważ zawiera on treści zablokowane przez ten serwer. Zawartość ta może być wyświetlana również przez właścicieli serwera." 
+
+Which translates to:
+
+This item cannot be posted because it contains content blocked by this server. This content may still be visible to the server owners.
+
+--------------------------------------------------------------------------------------------------------------
 
 ## 6. Privacy and Security Implications
 
@@ -270,7 +305,7 @@ The moderation blacklist was added after the discussion taken place, the mute wa
 
 
 **Key Takeaways:**
-- Resource usage is 6x higher than VSCode baseline
+- Resource usage is 6x higher than VSCode baseline (On par with Cursor in version 2.0.2)
 - Telemetry settings appear to be cosmetic rather than functional
 - Community feedback mechanisms are compromised by censorship
 - Data collection practices lack transparency and user control
