@@ -34,7 +34,7 @@ Initial testing revealed dramatic differences in resource consumption:
 
 **Post-Update Metrics (v2.0.2):**
 - Reduced from 33 to ~13 processes
-- Memory usage down to  ~2.5 GB (Depending on test)
+- Memory usage down to  ~1.9-2.5 GB (Depending on test)
 
 
 
