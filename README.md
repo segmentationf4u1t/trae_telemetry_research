@@ -1,5 +1,5 @@
 # Telemetry and Privacy Analysis of Trae IDE: A Deep Dive into ByteDance's VSCode Fork
-
+[中文翻译 / Chinese Translation](./README_zh.md)
 ## Executive Summary
 
 This analysis examines concerning privacy and community management issues discovered in Trae IDE, ByteDance's fork of Visual Studio Code. Key findings include persistent telemetry transmission despite user settings, extensive data collection practices, and concerning community censorship of technical criticism.
