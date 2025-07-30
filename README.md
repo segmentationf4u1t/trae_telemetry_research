@@ -208,7 +208,7 @@ The telemetry system captures:
 
 ### Automated Censorship
 
-When I attempted to discuss these findings on Trae's Discord server, I encountered concerning censorship practices:
+When I attempted to discuss these findings on Trae's Discord server i got muted (Explaination below):
 
 ![mutedlmao](https://i.imgur.com/wvAOzuG.png)
 ![notgood](https://i.imgur.com/phpvlVS.png)
