@@ -1,16 +1,12 @@
-<img width="684" height="426" alt="image" src="https://github.com/user-attachments/assets/10235641-331c-41b6-9c8f-bc126e660ccd" />
-
-[Read this in Chinese (简体中文)](./README_zh.md)
-
-# Performance and Telemetry Analysis of Trae IDE: A Deep Dive into ByteDance's VSCode Fork
+# Telemetry and Privacy Analysis of Trae IDE: A Deep Dive into ByteDance's VSCode Fork
 
 ## Executive Summary
 
-This analysis examines concerning performance and privacy issues discovered in Trae IDE, ByteDance's fork of Visual Studio Code. Key findings include excessive resource consumption (33 processes vs 9 in VSCode), persistent telemetry transmission despite user settings, and concerning community management practices.
+This analysis examines concerning privacy and community management issues discovered in Trae IDE, ByteDance's fork of Visual Studio Code. Key findings include persistent telemetry transmission despite user settings, extensive data collection practices, and concerning community censorship of technical criticism.
 
 ## 1. Background and Methodology
 
-During evaluation of development environments for a personal project, I conducted a comparative analysis of three popular IDEs: Visual Studio Code, Cursor, and Trae (ByteDance's VSCode fork). This analysis revealed significant discrepancies in resource usage and network behavior that warranted deeper investigation.
+During evaluation of development environments for a personal project, I conducted a comparative analysis that revealed significant privacy concerns in Trae IDE that warranted deeper investigation.
 
 **Testing Environment:**
 - OS: Microsoft Windows 11 Pro
@@ -19,58 +15,18 @@ During evaluation of development environments for a personal project, I conducte
 - Test Project: Identical codebase loaded in each IDE
 - Monitoring Tools: System Informer, Fiddler Everywhere
 
-## 2. Resource Consumption Analysis
+## 2. Network Traffic and Telemetry Investigation
 
-### Process Count and Memory Usage
-
-Initial testing revealed dramatic differences in resource consumption:
-
-| IDE      | Process Count | Memory Usage | Performance Impact | Project Size |
-|----------|---------------|--------------|-------------------| -----|
-| VS Code  | 9             | ~0.9 GB      | Baseline          | 107 Files Rust + TS|
-| Cursor   | 11            | ~1.9 GB      | 2.1x memory       | 107 Files Rust + TS|
-| **Trae** | **33**        | **~5.7 GB**  | **6.3x memory**   | 107 Files Rust + TS|
-
-
-**Post-Update Metrics (v2.0.2):**
-- Reduced from 33 to ~13 processes
-- Memory usage down to  ~1.9-2.5 GB (Depending on test)
-
-
-
-| IDE      | Process Count | Memory Usage | Performance Impact | Version | Project Size |
-|----------|---------------|--------------|----------------|------------|--------------|
-| VS Code  | 9             | ~0.9 GB      | Baseline          | 1.102.2  | 107 Files Rust + TS    |
-| Cursor   | 11            | ~1.9 GB      | 2.1x memory       | 1.2.4  | 107 Files Rust + TS  |
-| **Trae** | **11**        | **~1.9 GB**  | **2.1x memory**   | **2.0.2** | 107 Files Rust + TS |
-
-*node_modules and target excluded
-
-![Process Usage Comparison](https://i.imgur.com/jqYEBM7.png)
-
-*Figure 1: Trae spawns 3.7x more processes than VSCode and consumes 6.3x more memory*
-
-
-### Community Feedback and Partial Resolution
-
-After reporting this issue on Trae's Discord server ([reference](https://discord.com/channels/1320998163615846420/1335032920850825391/1397999824389017742)), the development team acknowledged the problem. Version 2.0.2 addressed some concerns, reducing the process count by approximately 20 processes. However.
-
-
-## 3. Network Traffic and Telemetry Investigation
-
-Now this is where the fun begins, network monitoring revealed persistent outbound connections to ByteDance infrastructure:
+Network monitoring revealed persistent outbound connections to ByteDance infrastructure:
 
 ![Network Requests](https://i.imgur.com/crkKdXF.png)
 
-*Figure 2: Trae's network activity showing regular connections to ByteDance servers*
+*Figure 1: Trae's network activity showing regular connections to ByteDance servers*
 
- 
 **Primary Endpoints Identified:**
 - `http://mon-va.byteoversea.com`
 - `http://maliva-mcs.byteoversea.com`
 - `https://mon-va.byteoversea.com/monitor_browser/collect/batch/?biz_id=marscode_nativeide_us`
-
-
 
 ### Telemetry Configuration Testing
 
@@ -80,8 +36,7 @@ I attempted to disable telemetry through the standard settings interface:
 
 ![Telemetry Settings](https://i.imgur.com/BYjJU0w.png)
 
-*Figure 3: Telemetry disabled in user settings*
-
+*Figure 2: Telemetry disabled in user settings*
 
 #### Unexpected Results
 
@@ -92,10 +47,10 @@ Disabling telemetry did not reduce network activity. Instead, it:
 With telemetry disabled, these calls can still quickly accumulate—during testing, a single batch reached up to 53,606 bytes. While actively using the editor, I observed around 500 calls within ~7 minutes, totaling up to 26 MB of data transferred in that short timeframe.
 
 ![Increase of calls](https://i.imgur.com/BwdiwC4.png)
-*Figure 4: Increase of calls*
 
+*Figure 3: Increase of calls*
 
-## 4. Data Transmission Analysis
+## 3. Data Transmission Analysis
 
 ### Batch Telemetry Payload
 
@@ -247,36 +202,27 @@ The telemetry system captures:
 - **Unique Identifiers**: Machine ID, user ID, device fingerprints
 - **Workspace Details**: Project information, file paths (obfuscated)
 
-
 👉 [Watch the Network Calls on Streamable](https://streamable.com/e/agr0a2?loop=0)
-## 5. Community Management Concerns
+
+## 4. Community Management Concerns
 
 ### Automated Censorship
 
-When I attempted to discuss these findings on Trae's Discord server, i got spanked with gag-hammer
+When I attempted to discuss these findings on Trae's Discord server, I encountered concerning censorship practices:
+
 ![mutedlmao](https://i.imgur.com/wvAOzuG.png)
 ![notgood](https://i.imgur.com/phpvlVS.png)
 
-https://discord.com/channels/1320998163615846420/1335032920850825391/1398374824987852891
+https://discord.com/channels/1320998163615846420/1335032920825391/1398374824987852891
 
+The issues observed included:
 
-
-
-
-<s>
-
-1. **Keyword Filtering**: The word "track" was added to an automated blacklist
-</s>
-
-2. **Automatic Punishment**: Mentioning tracking issues triggered an instant 7-day mute
-3. **Suppression of Technical Discussion**: Legitimate security concerns were treated as disruptive behavior
-
+1. **Automatic Punishment**: Mentioning tracking issues triggered an instant 7-day mute
+2. **Suppression of Technical Discussion**: Legitimate security concerns were treated as disruptive behavior
 
 ## Update 28/07/25
 
-Three days after the mute happened Community  moderator "Rdap" confirmed that the mute was automatic and it appears to be lifted. [You_can_see_it_here](https://github.com/segmentationf4u1t/trae_telemetry_research/issues/3)
-
-However, the messages that triggered the automatic warning are still visible in the Discord chat to users with the appropriate permissions. I'm not sure why the warning wasn't immediately lifted, especially since the staff saw exactly what happened at the time.
+Three days after the mute happened, Community moderator "Rdap" confirmed that the mute was automatic and it appears to be lifted. However, the messages that triggered the automatic warning are still visible in the Discord chat to users with the appropriate permissions. I'm not sure why the warning wasn't immediately lifted, especially since the staff saw exactly what happened at the time.
 
 The screenshot of mute says:
 
@@ -284,11 +230,9 @@ The screenshot of mute says:
 
 Which translates to:
 
-This item cannot be posted because it contains content blocked by this server. This content may still be visible to the server owners.
+"This item cannot be posted because it contains content blocked by this server. This content may still be visible to the server owners."
 
---------------------------------------------------------------------------------------------------------------
-
-## 6. Privacy and Security Implications
+## 5. Privacy and Security Implications
 
 ### Data Sovereignty Concerns
 
@@ -303,19 +247,20 @@ This item cannot be posted because it contains content blocked by this server. T
 - **Undocumented Behavior**: No clear disclosure of data collection practices
 - **Community Suppression**: Technical criticism met with censorship rather than engagement
 
-
+## Conclusions
 
 **Key Takeaways:**
-- Resource usage is 6x (2.1x v 2.0.2) higher than VSCode baseline (On par with Cursor in version 2.0.2)
 - Telemetry settings appear to be cosmetic rather than functional
+- Extensive data collection continues regardless of user preferences
 - Community feedback mechanisms are compromised by censorship
 - Data collection practices lack transparency and user control
 
 ---
 
-*This analysis was conducted in July 2025 using Trae IDE version  PRE-2.0.2 and 2.0.2. Network traffic was captured using standard monitoring tools, and all findings are reproducible. Community members are encouraged to conduct their own testing and share results through appropriate channels.*
+*This analysis was conducted in July 2025 using Trae IDE version PRE-2.0.2 and 2.0.2. Network traffic was captured using standard monitoring tools, and all findings are reproducible. Community members are encouraged to conduct their own testing and share results through appropriate channels.*
 
 While core of this research was written by hand, an LLM has rewritten it to fix broken english, grammar and enhance the verbal aspect of research.
 
 Discord: cryptux
 x (twitter): https://x.com/CookingCodes
+
