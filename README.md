@@ -4,7 +4,7 @@
 
 This is a refined and updated deep dive into Trae, ByteDance’s customized fork of Visual Studio Code.
 
-The initial investigation, conducted on 2024-07-24, focused on telemetry behaviors and issues with community moderation. This follow-up, carried out on 2025-07-31, revisits earlier claims, verifies developments, and provides further technical insights.
+The initial investigation, conducted on 2025-07-24, focused on telemetry behaviors and issues with community moderation. This follow-up, carried out on 2025-07-31, revisits earlier claims, verifies developments, and provides further technical insights.
 
 ---
 
