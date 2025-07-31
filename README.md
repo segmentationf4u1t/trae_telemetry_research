@@ -4,7 +4,7 @@
 
 This is a refined and updated deep dive into Trae, ByteDance’s customized fork of Visual Studio Code.
 
-The initial investigation, conducted on 2025-07-24, focused on telemetry behaviors and issues with community moderation. This follow-up, carried out on 2025-07-31, revisits earlier claims, verifies developments, and provides further technical insights.
+The initial investigation, conducted on 2024-07-24, focused on telemetry behaviors and issues with community moderation. This follow-up, carried out on 2025-07-31, revisits earlier claims, verifies developments, and provides further technical insights.
 
 ---
 
@@ -22,11 +22,13 @@ To their credit, Trae’s team reached out promptly after this occurred. They’
 
 ## 1. Network Traffic and Telemetry Overview
 
-Being a fork of VSCode, Trae inherits most of its core features — including the telemetry configuration UI.
+Being a fork of VSCode, Trae inherits most of its core features — including the telemetry configuration UI. 
 
-![telemetry](https://i.imgur.com/6z3sXBZ.png)
+**Recent updates now explicitly acknowledge the presence of telemetry mechanisms, marking a shift toward greater transparency. I also overheard that a dedicated Privacy Mode is scheduled for release somewhere near August.**
 
-*Figure 1: Telemetry explicitly disabled in settings (no effect in practice).*
+![telemetry](https://i.imgur.com/P8Vs0Sd.png)
+
+
 
 ### Primary Endpoints Observed:
 
@@ -38,11 +40,8 @@ Being a fork of VSCode, Trae inherits most of its core features — including th
 
 ### 1.1 Telemetry Configuration Testing
 
-The telemetry toggle in Trae is effectively cosmetic. Disabling it has no practical impact — backend processes continue transmitting data regardless.
 
-**Key findings:**
-
-* Disabling telemetry does **not** reduce outbound network activity.
+* The telemetry settings have been updated, and rumors say the team is actively working on privacy mode.
 * Persistent connections remain to key ByteDance endpoints.
 * During testing, a single telemetry batch reached **53,606 bytes**.
 * Over \~7 minutes of normal IDE use, over **500 calls** were logged, totaling approximately **26 MB** of data.
@@ -53,7 +52,7 @@ The telemetry toggle in Trae is effectively cosmetic. Disabling it has no practi
 
 ### 2.1 Batch Payloads
 
-Despite telemetry being disabled in settings, the application still sends verbose telemetry packets, including detailed hardware and usage metadata.
+the application still sends verbose telemetry packets, including detailed hardware and usage metadata.
 
 Example payload:
 
@@ -137,7 +136,7 @@ Trae continues to transmit a broad set of data even with telemetry opt-out enabl
 ---
 
 
-ByteDance has made efforts toward transparency, and the recent outreach by the Trae team is a step in the right direction. However, disabling telemetry must be meaningful — not decorative.
+ByteDance has made efforts toward transparency, and the recent outreach by the Trae team is a step in the right direction. They worked around the clock to ship quick clarifications to UI inside IDE and from rumors the team is working on privacy mode.
 
 All traffic was captured using standard monitoring tools. Findings are reproducible, and further testing is encouraged.
 
